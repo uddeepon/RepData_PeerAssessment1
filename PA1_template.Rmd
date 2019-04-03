@@ -6,8 +6,29 @@ output:
 ---
 
 
-## Loading and preprocessing the data
 
+## Loading and preprocessing the data
+Unzip data to obtain a csv file.
+
+```{r unzip, cache=TRUE}
+unzip("activity.zip",exdir = "data")
+```
+Reading the data into activity data frame and show some summary statistics
+```{r reading, cache=TRUE}
+activity <- read.csv("data/activity.csv", stringsAsFactors=FALSE)
+str(activity)
+summary(activity)
+```
+
+Convert date to POSIXct class using lubridate package and convert interval to hour:minute format
+```{r date_conversion, message=FALSE}
+library(lubridate)
+
+activity$date <- ymd(activity$date)
+
+str(activity)
+
+```
 
 
 ## What is mean total number of steps taken per day?
